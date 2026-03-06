@@ -1,11 +1,18 @@
 pipeline {
     agent any
-    parameters { string(name: 'PROJECT_NAME', defaultValue: 'Experiment_V1') }
+    parameters {
+        // Task 2: Define a numeric parameter
+        string(name: 'BUILD_ID', defaultValue: '101', description: 'Enter Numeric Build ID')
+    }
     stages {
-        stage('V1 Tasks') {
+        stage('V2 Tasks') {
             steps {
-                checkout scm  // Task 1
-                echo "Project Name: ${params.PROJECT_NAME}" // Task 2 & 3
+                // Task 1: Checkout
+                checkout scm
+                // Task 3: Save value inside buildinfo.txt
+                writeFile file: 'buildinfo.txt', text: "BUILD_ID=${params.BUILD_ID}"
+                // Verification: Print content to console
+                sh 'cat buildinfo.txt' 
             }
         }
     }
