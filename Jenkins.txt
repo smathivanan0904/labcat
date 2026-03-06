@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Version 1 Tasks') {
+        stage('Version 2 Tasks') {
             steps {
                 checkout scm // Task 1
-                echo "Pipeline execution has started" // Task 2
-                echo "Pipeline execution has completed" // Task 3
+                echo "Project files are being processed..." // Task 2
+                echo "Processing completion" // Task 3
             }
         }
     }
