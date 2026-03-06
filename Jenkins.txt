@@ -1,35 +1,11 @@
 pipeline {
     agent any
-    parameters {
-        // Task 2: Define all parameters
-        string(name: 'PROJECT_NAME', defaultValue: 'Final_Experiment')
-        string(name: 'BUILD_ID', defaultValue: '999')
-        string(name: 'APP_NAME', defaultValue: 'InventoryApp')
-        string(name: 'VERSION', defaultValue: '4.5.2')
-    }
     stages {
-        stage('Version 4 Tasks') {
+        stage('Version 1 Tasks') {
             steps {
-                // Task 1: Checkout latest commit
-                checkout scm
-                
-                // Task 2: Display all parameter values in the console output
-                echo "--- Full Parameter Summary ---"
-                echo "Project: ${params.PROJECT_NAME}"
-                echo "Build ID: ${params.BUILD_ID}"
-                echo "Application: ${params.APP_NAME}"
-                echo "Version: ${params.VERSION}"
-                
-                // Task 3: Store the parameter values inside parameters.txt file
-                script {
-                    def fileContent = """
-                    PROJECT_NAME=${params.PROJECT_NAME}
-                    BUILD_ID=${params.BUILD_ID}
-                    APP_NAME=${params.APP_NAME}
-                    VERSION=${params.VERSION}
-                    """
-                    writeFile file: 'parameters.txt', text: fileContent
-                }
+                checkout scm // Task 1
+                echo "Pipeline execution has started" // Task 2
+                echo "Pipeline execution has completed" // Task 3
             }
         }
     }
