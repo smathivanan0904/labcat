@@ -1,18 +1,17 @@
 pipeline {
     agent any
     parameters {
-        // Task 2: Define a numeric parameter
-        string(name: 'BUILD_ID', defaultValue: '101', description: 'Enter Numeric Build ID')
+        // Task 2: Define two parameters
+        string(name: 'APP_NAME', defaultValue: 'PaymentGateway', description: 'Name of the App')
+        string(name: 'VERSION', defaultValue: '3.1.0', description: 'Version number')
     }
     stages {
-        stage('V2 Tasks') {
+        stage('V3 Tasks') {
             steps {
-                // Task 1: Checkout
+                // Task 1: Checkout latest version
                 checkout scm
-                // Task 3: Save value inside buildinfo.txt
-                writeFile file: 'buildinfo.txt', text: "BUILD_ID=${params.BUILD_ID}"
-                // Verification: Print content to console
-                sh 'cat buildinfo.txt' 
+                // Task 3: Combined message
+                echo "Deploying Application: ${params.APP_NAME} | Release Version: ${params.VERSION}"
             }
         }
     }
