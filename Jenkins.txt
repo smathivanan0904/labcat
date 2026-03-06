@@ -1,11 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Version 3 Tasks') {
+        stage('Version 4 Tasks') {
             steps {
                 checkout scm // Task 1
-                // Task 2 & 3: Create status.txt and write 'Build Successful'
-                writeFile file: 'status.txt', text: 'Build Successful'
+                script {
+                    // Task 2: Read current content and append new message
+                    def currentContent = readFile('status.txt')
+                    writeFile file: 'status.txt', text: currentContent + "\nPipeline Execution Completed"
+                }
+                // Task 3: Display contents of status.txt
+                sh 'cat status.txt' // Use 'bat type status.txt' if on Windows
             }
         }
     }
