@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    parameters { string(name: 'PROJECT_NAME', defaultValue: 'Experiment_V1') }
+    stages {
+        stage('V1 Tasks') {
+            steps {
+                checkout scm  // Task 1
+                echo "Project Name: ${params.PROJECT_NAME}" // Task 2 & 3
+            }
+        }
+    }
+}
