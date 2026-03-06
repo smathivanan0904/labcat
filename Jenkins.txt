@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Version 2 Tasks') {
+        stage('Version 3 Tasks') {
             steps {
                 checkout scm // Task 1
-                echo "Project files are being processed..." // Task 2
-                echo "Processing completion" // Task 3
+                // Task 2 & 3: Create status.txt and write 'Build Successful'
+                writeFile file: 'status.txt', text: 'Build Successful'
             }
         }
     }
